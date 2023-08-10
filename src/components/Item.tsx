@@ -23,15 +23,28 @@ export function Item({ nome, email, avatar, status, grade1, grade2 }: Props) {
         </div>
       </th>
       <td className="px-6 py-4">
-        {status}
-        <span className="p-4 rounded-xl text-white font-bold bg-green-600">
-            {status == true && 'Ativo'}
-            {status == false && 'Inativo'}
-        </span>
+        {status == true &&
+          <span className="p-4 rounded-xl text-white font-bold bg-green-600">
+            Ativo
+          </span>
+        }
+        {status == false &&
+          <span className="p-4 rounded-xl text-white font-bold bg-red-700">
+            Inativo
+          </span>
+        }
       </td>
       <td className="px-6 py-4">{grade1}</td>
       <td className="px-6 py-4">{grade2}</td>
-      <td className="px-6 py-4">{ ((grade1 + grade2)/2).toFixed(2) }</td>
+
+      <td className="px-6 py-4">
+        {status == true &&
+          ((grade1 + grade2)/2).toFixed(2) 
+        }
+        {status == false &&
+          '--'
+        }
+      </td>
     </tr>
   );
 }
