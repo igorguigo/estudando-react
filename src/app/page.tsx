@@ -1,10 +1,10 @@
-import { Table } from "@/components/Table";
+import { Todolist } from "@/components/Todolist";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="relative overflow-x-auto">
-        <Table />
+        <Todolist />
       </div>
     </main>
   );
