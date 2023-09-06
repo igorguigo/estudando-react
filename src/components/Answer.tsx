@@ -9,7 +9,7 @@ type Props = {
 
 export function Answer({ answer, onClick, isSelectedAnswer, isCorrectAnswer }: Props) {
     
-    const switchColor = isSelectedAnswer ? (isCorrectAnswer? "bg-green-300" : "bg-red-300") : 'bg-gray-300';
+    const switchColor = isSelectedAnswer ? (isCorrectAnswer? "bg-green-300 text-black" : "bg-red-300 text-black") : '';
 
     return (
         <li className={`w-full p-1 border-solid border-2 border-gray-700 rounded-md cursor-pointer ${switchColor}`} onClick={onClick} >{answer.name}</li> 

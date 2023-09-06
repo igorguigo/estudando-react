@@ -8,17 +8,12 @@ import { useState } from "react"
     
 
 export function Question({id, name, answer, rightAnswer} :Question) {
-    const [isCorrect, setCorrect] = useState(false)
-    const [selectedAnswer, setSelectedAnswer] = useState(false);
+    const [isCorrect, setCorrect] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
     const checkCorrectAnswer = (elementId: number) => {
-        if(elementId === rightAnswer){
-            setCorrect(true);
-            setSelectedAnswer(true);
-        }else{
-            setCorrect(false);
-            setSelectedAnswer(false);
-        }
+        setSelectedAnswer(elementId);
+        setCorrect(elementId === rightAnswer);
     }
 
     return (
@@ -27,7 +22,13 @@ export function Question({id, name, answer, rightAnswer} :Question) {
             <ul className="space-y-3">
             {
                 answer.map((element) => (
-                    <Answer answer={element}  onClick={() => checkCorrectAnswer(element.id)} isSelectedAnswer={selectedAnswer} isCorrectAnswer={isCorrect} />
+                    <Answer
+                        key={element.id}
+                        answer={element}
+                        onClick={() => checkCorrectAnswer(element.id)}
+                        isSelectedAnswer={element.id === selectedAnswer}
+                        isCorrectAnswer={isCorrect}
+                    />
                 ))
             }
             </ul>
