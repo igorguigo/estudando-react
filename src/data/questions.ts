@@ -9,6 +9,6 @@ export const questions: Question[] = [
             'Chocolate em pó',
             'Ovos'
         ],
-        answer: 4
+        answer: 3
     }
 ];
