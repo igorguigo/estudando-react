@@ -2,6 +2,7 @@
 
 
 import { QuestionItem } from "@/components/QuestionItem";
+import { Results } from "@/components/Results";
 import { imgList } from "@/data/imgList";
 import { questions } from "@/data/questions";
 import { useState } from "react";
@@ -25,6 +26,12 @@ export default function Home() {
     loadNextQuestion();
   }
 
+  const resetQuiz = () => {
+    setAnswers([]);
+    setCurrentQuestion(0);
+    setShowResult(false);
+  }
+
   return (
     <div className="w-full h-screen flex justify-center items-center bg-blue-600">
       <div className="w-full max-w-xl rounded-md bg-white text-black shadow shadow-black">
@@ -34,11 +41,17 @@ export default function Home() {
           <QuestionItem question={questions[currentQuestion]} count={currentQuestion + 1} onAnswer={handleAnswered} />
         }
         {showResult && 
-          <p>Acabaram as perguntasss</p>
+          <Results questions={questions} answers={answers} />
         } 
         </div>
         <div className="p-5 text-center border-t border-gray-300">
-          {currentQuestion + 1} de {questions.length} pergunta{questions.length > 1 ? 's' : ''}
+        {
+          showResult ? (
+            <button onClick={resetQuiz} className="px-3 py-3 bg-blue-800 rounded-2xl text-white font-bold">Reiniciar Quiz</button>
+          ) : (
+            <>{currentQuestion + 1} de {questions.length} pergunta{questions.length > 1 ? 's' : ''}</>        
+          )
+        }
         </div>
       </div>
     </div>

@@ -18,8 +18,6 @@ export function QuestionItem({ question, count, onAnswer }: Props) {
                 onAnswer(key);
                 setSelectedAnswer(null);
             }, 1000);
-
-            onAnswer(key);
         }
     }
 
